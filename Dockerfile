@@ -3,7 +3,7 @@ FROM alpine:3.3
 RUN apk add --update bash curl && \
     rm -rf /var/cache/apk/*
 
-COPY src/*.sh /src/
+COPY src /src
 
 WORKDIR /src
 

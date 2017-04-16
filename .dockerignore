@@ -1,1 +1,3 @@
 .git
+test
+src/**/*_test.sh
