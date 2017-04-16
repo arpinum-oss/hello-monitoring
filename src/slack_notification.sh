@@ -5,9 +5,9 @@ slack_notification__notify() {
   local username="Hello Monitoring"
   local emoji="$(slack_notification__emoji_from_type "${type}")"
 
-  > /dev/null curl -sS -X POST --data-urlencode \
-"payload={\"text\": \"${slack_text}\", \"username\": \"${username}\", \"icon_emoji\": \"${emoji}\"}" \
-"${SLACK_WEBHOOK_URL}"
+  > /dev/null http__post \
+"${SLACK_WEBHOOK_URL}" \
+"{\"text\": \"${slack_text}\", \"username\": \"${username}\", \"icon_emoji\": \"${emoji}\"}" \
 
   if (( $? != 0 )); then
     >&2 echo "Impossible to notify via slack"
