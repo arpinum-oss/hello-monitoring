@@ -3,7 +3,7 @@ slack_notification__notify() {
   local type="$2"
   local slack_text="${NAME}: ${text}"
   local username="Hello Monitoring"
-  local emoji="$(slack_notification__emoji_from_type "${type}")"
+  local emoji="$(_slack_notification__emoji_from_type "${type}")"
 
   > /dev/null http__post \
 "${SLACK_WEBHOOK_URL}" \
@@ -14,7 +14,7 @@ slack_notification__notify() {
   fi
 }
 
-slack_notification__emoji_from_type() {
+_slack_notification__emoji_from_type() {
   local type="$1"
   if [[ "${type}" = "success" ]]; then
     echo ":white_check_mark:"

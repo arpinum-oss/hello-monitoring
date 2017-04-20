@@ -16,4 +16,3 @@ wont_truncate_short_string() {
 
   assertion__equal "my" "${truncated}"
 }
-

@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)"
-source "${HERE}/util.sh"
+source "${HERE}/monitor/util.sh"
 
-run__main() {
-  run__check_variables
-  run__set_defaults
-  run__print_info
-  run__register_cron
+register__main() {
+  _register__check_variables
+  _register__set_defaults
+  _register__print_info
+  _register__register_cron
   /usr/sbin/crond -f -d 8
 }
 
-run__set_defaults() {
+_register__set_defaults() {
   export CRON=${CRON:-* * * * *}
   export NAME=${NAME:-"$(util__truncate "${URL}" 30)"}
 }
 
-run__print_info() {
+_register__print_info() {
   echo "Monitoring ${URL} with cron ${CRON}"
 }
 
-run__check_variables() {
+_register__check_variables() {
   if [[ -z "${URL}" ]]; then
     >&2 echo "URL is not set"
     exit 1
@@ -32,11 +32,11 @@ run__check_variables() {
   fi
 }
 
-run__register_cron() {
+_register__register_cron() {
   touch crontab.tmp
-  echo "${CRON} /src/monitor.sh" > crontab.tmp
+  echo "${CRON} /src/monitor/run.sh" > crontab.tmp
   crontab crontab.tmp
   rm crontab.tmp
 }
 
-run__main "$@"
+register__main
