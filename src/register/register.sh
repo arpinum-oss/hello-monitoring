@@ -1,9 +1,4 @@
-#!/usr/bin/env bash
-
-HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)"
-source "${HERE}/monitor/util.sh"
-
-register__main() {
+register__run() {
   _register__check_variables
   _register__set_defaults
   _register__print_info
@@ -34,9 +29,7 @@ _register__check_variables() {
 
 _register__register_cron() {
   touch crontab.tmp
-  echo "${CRON} /src/monitor/run.sh" > crontab.tmp
+  echo "${CRON} ${ROOT}/run.sh monitor" > crontab.tmp
   crontab crontab.tmp
   rm crontab.tmp
 }
-
-register__main

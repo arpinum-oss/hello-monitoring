@@ -1,6 +1,6 @@
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)"
 source "${HERE}/monitor.sh"
-source "${HERE}/util.sh"
+source "${HERE}/../common/util.sh"
 
 setup() {
   notify_called="no"

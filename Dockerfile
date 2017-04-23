@@ -7,4 +7,6 @@ COPY src /src
 
 WORKDIR /src
 
-CMD ["./register.sh"]
+ENTRYPOINT ["./run.sh"]
+
+CMD ["register"]
