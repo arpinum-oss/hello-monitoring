@@ -1,6 +1,6 @@
 http__get() {
   local url="$1"
-  curl -sS "${url}"
+  curl -sSL "${url}"
 }
 
 http__post() {
