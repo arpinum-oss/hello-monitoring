@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)"
-source "${ROOT}/common/util.sh"
+source "${ROOT}/monitor/util.sh"
 source "${ROOT}/monitor/http.sh"
 source "${ROOT}/monitor/console_notification.sh"
 source "${ROOT}/monitor/slack_notification.sh"
@@ -28,7 +28,7 @@ _run__main() {
 }
 
 _run__invalid_usage() {
-  >&2 echo "Invalid usage. Available commands: register or monitor."
+  echo "Invalid usage. Available commands: register or monitor." >&2
   exit 1
 }
 
